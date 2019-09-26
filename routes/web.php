@@ -14,6 +14,7 @@
 /*Route::get('/', function () {
 	return view('welcome');
 });*/
+//Direct access webapp
 Route::get('/','home@index');
 
 Route::get('role',[
