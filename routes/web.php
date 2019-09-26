@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
 	return view('welcome');
-});
+});*/
+Route::get('/','home@index');
 
 Route::get('role',[
    'middleware' => 'Role:editor',
@@ -40,3 +41,5 @@ Route::get('view-product','home@view_product');
 Route::get('cart','home@cart');
 Route::get('checkout','home@checkout');
 Route::post('add-to-cart','home@add_to_cart');
+
+Route::get('get-flight-data','FlightController@index');
