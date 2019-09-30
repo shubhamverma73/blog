@@ -10,11 +10,15 @@ use App\Http\Model\Flight;
 class FlightController extends Controller
 {
     public function index() {
-
 		$flights = Flight::all();
 
 		foreach ($flights as $flight) {
 		    echo $flight->name.'<br>';
 		}
+	}
+
+	public function specific_record($id) {
+		$flight = Flight::find($id);
+		echo $flight->name;
 	}
 }
