@@ -36,4 +36,13 @@ class FlightController extends Controller
 	    );
 	    $updateOrder = Flight::where('id', $id)->update($upArray);
 	}
+
+	public function delete_record($id) {
+		$flight = Flight::find(1);
+		$flight->delete(); //Single record
+
+		Flight::destroy(1); //Single record
+		Flight::destroy(1, 2, 3); //Multiple records only primary key
+		Flight::where('cat_id', '=', 1)->delete(); //Delete using other column value
+	}
 }
