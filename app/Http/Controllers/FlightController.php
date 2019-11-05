@@ -13,17 +13,19 @@ class FlightController extends Controller
 		$flights = Flight::all();
 
 		foreach ($flights as $flight) {
+			//echo Flight::test();
 			echo $flight->name.'<br>';
 		}
 	}
 
 	public function specific_record($id) {
-		$flight = Flight::find($id);
+		$flight = Flight::find($id); //It will work only for primary key id
 		echo $flight->name;
 	}
 
 	public function where_record($id) {
-		$flights = Flight::where('cat_id', '=', $id)->get();
+		$flights = Flight::where('cat_id', $id)->get();
+		//$flights = Flight::where('cat_id', '>', $id)->get();
 		foreach ($flights as $flight) {
 			echo $flight->name.'<br>';
 		}
@@ -31,8 +33,8 @@ class FlightController extends Controller
 
 	public function update_record($id) {
 		$upArray = array(
-			'short_descprition' => 'Fresh carrot description updated',
-			'description' => 'Fresh carrot description updated',
+			'short_descprition' => 'Fresh carrot description updated.',
+			'description' => 'Fresh carrot description updated.',
 	    );
 	    $updateOrder = Flight::where('id', $id)->update($upArray);
 	}
