@@ -37,6 +37,7 @@ class FlightController extends Controller
 			'description' => 'Fresh carrot description updated.',
 	    );
 	    $updateOrder = Flight::where('id', $id)->update($upArray);
+	    return redirect('/thank-you')->with('message','Status updated.');
 	}
 
 	public function delete_record($id) {
@@ -46,5 +47,10 @@ class FlightController extends Controller
 		Flight::destroy(1); //Single record
 		Flight::destroy(1, 2, 3); //Multiple records only primary key
 		Flight::where('cat_id', '=', 1)->delete(); //Delete using other column value
+	}
+
+	public function thank_you() {
+		$data['title'] = 'User Edit';
+		return view('thank_you',['data'=>$data]);
 	}
 }
