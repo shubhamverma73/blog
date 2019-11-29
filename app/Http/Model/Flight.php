@@ -14,4 +14,14 @@ class Flight extends Model
 	public function test(){
 		echo "This is a test function";
 	}
+
+	public function registration()
+    {
+        return $this->belongsTo('App\Models\Registration');
+    }
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
 }

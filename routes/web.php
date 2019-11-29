@@ -46,3 +46,4 @@ Route::get('get-flight-data','FlightController@index');
 Route::get('get-flight-data-specific/{id}','FlightController@specific_record');
 Route::get('get-flight-data-where/{id}','FlightController@where_record');
 Route::get('get-flight-data-update/{id}','FlightController@update_record');
+Route::get('thank-you','FlightController@thank_you');
