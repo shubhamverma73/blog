@@ -1,10 +1,10 @@
 @font-face {
   font-family: 'icomoon';
-  src:  url('http://localhost/blog/public/fonts/icomoon/icomoon.eot?6tt51o');
-  src:  url('http://localhost/blog/public/fonts/icomoon/icomoon.eot?6tt51o#iefix') format('embedded-opentype'),
-    url('http://localhost/blog/public/fonts/icomoon/icomoon.ttf?6tt51o') format('truetype'),
-    url('http://localhost/blog/public/fonts/icomoon/icomoon.woff?6tt51o') format('woff'),
-    url('http://localhost/blog/public/fonts/icomoon/icomoon.svg?6tt51o#icomoon') format('svg');
+  src:  url('http://laraveltut.in/public/fonts/icomoon/icomoon.eot?6tt51o');
+  src:  url('http://laraveltut.in/public/fonts/icomoon/icomoon.eot?6tt51o#iefix') format('embedded-opentype'),
+    url('http://laraveltut.in/public/fonts/icomoon/icomoon.ttf?6tt51o') format('truetype'),
+    url('http://laraveltut.in/public/fonts/icomoon/icomoon.woff?6tt51o') format('woff'),
+    url('http://laraveltut.in/public/fonts/icomoon/icomoon.svg?6tt51o#icomoon') format('svg');
   font-weight: normal;
   font-style: normal;
 }
