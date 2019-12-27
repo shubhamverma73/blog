@@ -3,8 +3,9 @@
 namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
+use Eloquent;
 
-class Flight extends Model
+class Flight extends Eloquent
 {
 	protected 	$table 		= 'product';
 	protected 	$primaryKey = 'id';
@@ -15,13 +16,8 @@ class Flight extends Model
 		echo "This is a test function";
 	}
 
-	public function registration()
-    {
-        return $this->belongsTo('App\Models\Registration');
-    }
-
     public function category()
     {
-        return $this->belongsTo('App\Models\Category');
+        return $this->belongsTo('App\Http\Model\Category');
     }
 }

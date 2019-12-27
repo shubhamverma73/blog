@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Flight;
+use App\Http\Model\Category;
+use DB;
 
 class FlightController extends Controller
 {
@@ -55,5 +57,28 @@ class FlightController extends Controller
 	public function thank_you() {
 		$data['title'] = 'Thank You';
 		return view('thank_you',['data'=>$data]);
+	}
+
+	public function get_join_data() {
+		$flight = Flight::with(['category'])->get();
+		//echo $flight->category->s_description;
+		debug($flight);
+	}
+
+	public function get_all_category() {
+		$category = Category::all();
+
+		foreach ($category as $category) {
+			echo $category->name.'<br>';
+		}
+	}
+
+	public function normal_join() {
+		$join = DB::table('product')
+            ->join('category', 'product.cat_id', '=', 'category.id')
+            ->select('product.*', 'category.s_description', 'category.name as category_name')
+            ->where('category.s_description', 'test cat 1')
+            ->get();
+        debug($join);
 	}
 }
