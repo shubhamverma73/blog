@@ -14,8 +14,11 @@ class FlightController extends Controller
 
 		foreach ($flights as $flight) {
 			//echo Flight::test();
-			echo $flight->name.'<br>';
+			//echo $flight->name.'<br>';
 		}
+
+		$data['flights'] = $flights;
+		return view('all_records',['data'=>$data]);
 	}
 
 	public function specific_record($id) {
@@ -33,8 +36,8 @@ class FlightController extends Controller
 
 	public function update_record($id) {
 		$upArray = array(
-			'short_descprition' => 'Fresh carrot description updated.',
-			'description' => 'Fresh carrot description updated.',
+			'short_descprition' => 'Fresh apple description updated.',
+			'description' => 'Fresh apple description updated.',
 	    );
 	    $updateOrder = Flight::where('id', $id)->update($upArray);
 	    return redirect('/thank-you')->with('message','Status updated.');
@@ -50,7 +53,7 @@ class FlightController extends Controller
 	}
 
 	public function thank_you() {
-		$data['title'] = 'User Edit';
+		$data['title'] = 'Thank You';
 		return view('thank_you',['data'=>$data]);
 	}
 }
