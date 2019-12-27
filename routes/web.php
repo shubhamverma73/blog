@@ -47,6 +47,6 @@ Route::get('get-flight-data-specific/{id}','FlightController@specific_record');
 Route::get('get-flight-data-where/{id}','FlightController@where_record');
 Route::get('get-flight-data-update/{id}','FlightController@update_record');
 Route::get('thank-you','FlightController@thank_you');
-Route::get('get-join-data','FlightController@get_join_data');
 Route::get('get-all-category','FlightController@get_all_category');
 Route::get('normal-join','FlightController@normal_join');
+Route::get('get-join-data','FlightController@get_join_data');

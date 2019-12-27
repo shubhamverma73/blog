@@ -59,12 +59,6 @@ class FlightController extends Controller
 		return view('thank_you',['data'=>$data]);
 	}
 
-	public function get_join_data() {
-		$flight = Flight::with(['category'])->get();
-		//echo $flight->category->s_description;
-		debug($flight);
-	}
-
 	public function get_all_category() {
 		$category = Category::all();
 
@@ -80,5 +74,11 @@ class FlightController extends Controller
             ->where('category.s_description', 'test cat 1')
             ->get();
         debug($join);
+	}
+
+	public function get_join_data() {
+		$flight = Flight::with(['category'])->get()->toArray();
+		//echo $flight->category->s_description;
+		debug($flight);
 	}
 }

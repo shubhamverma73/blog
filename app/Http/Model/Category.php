@@ -12,7 +12,7 @@ class Category extends Eloquent
 
     public function flight()
     {
-        return $this->hasMany('App\Http\Model\Flight', 'foreign_key', 'cat_id');
+        return $this->hasMany('App\Http\Model\Flight', 'id', 'cat_id');
     }
 
 }

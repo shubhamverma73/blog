@@ -18,6 +18,6 @@ class Flight extends Eloquent
 
     public function category()
     {
-        return $this->belongsTo('App\Http\Model\Category');
+        return $this->belongsTo('App\Http\Model\Category', 'cat_id', 'id');
     }
 }
