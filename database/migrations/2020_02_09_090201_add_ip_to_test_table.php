@@ -6,7 +6,11 @@ for Laravel 3:
 php artisan migrate:make add_paid_to_users
 
 for Laravel 5+:
-php artisan make:migration add_paid_to_users_table --table=users*/
+php artisan make:migration add_paid_to_users_table --table=users
+
+then run you migration
+php artisan migrate
+*/
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;

@@ -38,9 +38,11 @@ Route::get('products/{id}','home@products');
 Route::get('all-products','home@all_products');
 Route::get('wishlist','home@wishlist');
 Route::get('view-product','home@view_product');
+Route::get('product-details/{id}','home@product_details');
 Route::get('cart','home@cart');
 Route::get('checkout','home@checkout');
 Route::post('add-to-cart','home@add_to_cart');
+Route::post('my-account', 'home@my_account');
 
 Route::get('get-flight-data','FlightController@index');
 Route::get('get-flight-data-specific/{id}','FlightController@specific_record');
