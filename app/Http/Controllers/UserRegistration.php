@@ -38,13 +38,17 @@ class UserRegistration extends Controller
 		$password = $request->password;
 
 		$login = DB::table('registration')->where('email', [$email])->where('pass', [$password])->first();
-		$user_session = array(
-								'user_id' 		=> $login->id,
-								'user_name' 	=> $login->name,
-								'email' 		=> $login->email);
+		if(!empty($login)) {
+			$user_session = array(
+									'user_id' 		=> $login->id,
+									'user_name' 	=> $login->name,
+									'email' 		=> $login->email);
 
-		Session::put($user_session);
-		return redirect('/home');
+			Session::put($user_session);
+			return redirect('/home');
+		} else {
+			return redirect('/login')->with('failed','Invalid credential, please try again!');
+		}
 	}
 
 	public function view() {

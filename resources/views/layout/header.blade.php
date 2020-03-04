@@ -42,14 +42,14 @@
 					</li>
 					<li class="nav-item"><a href="{{ url('/about-us') }}" class="nav-link">About</a></li>
 					<li class="nav-item"><a href="{{ url('/contact-us') }}" class="nav-link">Contact</a></li>
-					<li class="nav-item cta cta-colored"><a href="{{ url('/cart') }}" class="nav-link"><span class="icon-shopping_cart"></span>[<span id="cart-quantity">0</span>]</a></li>
+					<li class="nav-item cta cta-colored"><a href="{{ url('/cart') }}" class="nav-link"><span class="icon-shopping_cart"></span>[<span id="cart-quantity">@if (Session::has('total_qty') ) {!! Session::get('total_qty') !!} @else 0 @endif</span>]</a></li>
 					@if(!empty(session('user_id')))
 						<li class="nav-item"><a href="{{ url('/my-account') }}" class="nav-link">My Account</a></li>
+						<li class="nav-item"><a href="{{ url('/logout') }}" class="nav-link">Logout</a></li>
 					@else
 						<li class="nav-item"><a href="{{ url('/login') }}" class="nav-link">Login</a></li>
+						<li class="nav-item"><a href="{{ url('/register') }}" class="nav-link">Signup</a></li>
 					@endif
-					<li class="nav-item"><a href="{{ url('/register') }}" class="nav-link">Signup</a></li>
-
 				</ul>
 			</div>
 		</div>

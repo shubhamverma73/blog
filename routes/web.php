@@ -24,6 +24,7 @@ Route::get('role',[
 Route::get('register','UserRegistration@register');
 Route::post('/user/register','UserRegistration@signup');
 Route::get('login','UserRegistration@login');
+Route::get('logout', 'UserRegistration@logout');
 Route::post('/user/signin','UserRegistration@signin');
 Route::get('view-records','UserRegistration@view');
 Route::get('edit/{id}','UserRegistration@view_edit');

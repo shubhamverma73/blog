@@ -1,4 +1,8 @@
 @extends('layout/index')@section('content')
+
+	@if (Session::has('success'))<div class="alert alert-success">{!! Session::get('success') !!}</div>
+	@elseif (Session::has('failed'))<div class="alert alert-danger">{!! Session::get('failed') !!}</div>@endif
+	
 	<section id="home-section" class="hero">
 	   <div class="home-slider owl-carousel">
 		  <div class="slider-item" style="background-image: url(images/bg_1.jpg);">

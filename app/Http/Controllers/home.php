@@ -81,34 +81,43 @@ class home extends Controller
 
 			// ========================== Get if user have already cart ========================
 			$user_cart_details = DB::table('cart')->where('user_id', session('user_id'))->where('status', 'Pending')->first();
+			$cart_details = DB::table('cart_details')->where('user_id', session('user_id'))->where('status', 'Pending')->get();
 
 			// =============== If user have already cart value ===================
 			if(!empty($user_cart_details)) {
-				$order_id 	= $product_details->order_id;
-				$total_qty 	= $product_details->total_qty;
-				$total_amt 	= $product_details->total_amt;
+				$order_id 	= $user_cart_details->order_id;
+				$total_qty 	= $product_details->total_qty + $quantity;
+				$total_amt 	= $user_cart_details->total_amt + $product_details->price;
 
 				$data = array(
-								"total_qty"		=> $quantity + $total_qty,
-								"total_amt"		=> $product_details->price + $total_amt,
+								"total_qty"		=> $total_qty,
+								"total_amt"		=> $total_amt,
 								"status"		=> 'Pending'
 							);
 				DB::table('cart')->where('order_id', $order_id)->update($data);
 
-				$data_details = array(
-								'order_id'		=> $order_id,
-								"user_id"		=> session('user_id'),
-								'product_id'	=> $product_id,
-								"car_id"		=> $product_details->cat_id,							
-								"qty"			=> $quantity,
-								"amount"		=> $product_details->price,
-								"status"		=> 'Pending',
-								"date"			=> date('Y-m-d'),
-								"time"			=> date('H:i:s'),
+				$total_prodct_qty = 0;
+				$total_prodct_amt = 0;
+				foreach ($cart_details as $key => $value) {
+					if($value['product_id'] == $product_id) {
+						$total_prodct_qty = $value['qty'] + $quantity;
+						$total_prodct_amt = $value['amount'] + $product_details->price;
+					} else {
+						$total_prodct_qty = $quantity;
+						$total_prodct_amt = $product_details->price;
+					}
+				}
+
+				$data_details = array(							
+								"qty"			=> $total_prodct_qty,
+								"amount"		=> $total_prodct_amt
 							);
-				$id_details = DB::table('cart_details')->insertGetId($data_details);
+				DB::table('cart_details')->where('order_id', $order_id)->update($data_details);
 			} else {
 				$order_id = time() . mt_rand() . $product_id;
+				$total_qty 	= $quantity;
+				$total_amt 	= $product_details->price;
+
 				$data = array(
 								'order_id'		=> $order_id,
 								"user_id"		=> session('user_id'),
@@ -124,24 +133,24 @@ class home extends Controller
 								'order_id'		=> $order_id,
 								"user_id"		=> session('user_id'),
 								'product_id'	=> $product_id,
-								"car_id"		=> $product_details->cat_id,							
+								"cat_id"		=> $product_details->cat_id,							
 								"qty"			=> $quantity,
 								"amount"		=> $product_details->price,
 								"status"		=> 'Pending',
 								"date"			=> date('Y-m-d'),
 								"time"			=> date('H:i:s'),
+								"timestamp"		=> date('Y-m-d H:i:s')
 							);
 				$id_details = DB::table('cart_details')->insertGetId($data_details);
 			}
 
 			if(!empty($id)) {
-				Session::put('last_id', $id);
-
 				//User cart session
 				$cart_session = array(
 								'order_id' 		=> $order_id,
-								'total_qty' 	=> $quantity,
-								'total_amt' 	=> $product_details->price);
+								'total_qty' 	=> $total_qty,
+								'total_amt' 	=> $total_amt
+							);
 				Session::put($cart_session);
 
 				echo 'addedToCart';

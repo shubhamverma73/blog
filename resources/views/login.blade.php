@@ -1,4 +1,8 @@
 @extends('layout/index')@section('content')
+
+	@if (Session::has('success'))<div class="alert alert-success">{!! Session::get('success') !!}</div>
+	@elseif (Session::has('failed'))<div class="alert alert-danger">{!! Session::get('failed') !!}</div>@endif
+
 	<section class="ftco-section contact-section bg-light">
 		<div class="container">
 			<div class="row block-12">
@@ -12,7 +16,7 @@
 							<input type="password" name = "password" class="form-control" placeholder="Your Password">
 						</div>
 						<div class="form-group">
-							<input type="submit" value="Sign Up" class="btn btn-primary py-3 px-5">
+							<input type="submit" value="Login" class="btn btn-primary py-3 px-5">
 						</div>
 					</form>
 				</div>
