@@ -39,10 +39,14 @@ class UserRegistration extends Controller
 
 		$login = DB::table('registration')->where('email', [$email])->where('pass', [$password])->first();
 		if(!empty($login)) {
+			$cart_details = get_cart_total_qty_and_amt($login->id);
 			$user_session = array(
 									'user_id' 		=> $login->id,
 									'user_name' 	=> $login->name,
-									'email' 		=> $login->email);
+									'email' 		=> $login->email,
+									'total_qty'		=> $cart_details[0]->total_qty,
+									'total_amt'		=> $cart_details[0]->total_amt,
+								);
 
 			Session::put($user_session);
 			return redirect('/home');

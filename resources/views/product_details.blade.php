@@ -20,6 +20,7 @@
 					<p class="price"><span>{{ $data['product']->price }}</span></p>
 					<p>{{ $data['product']->description }}
 					</p>
+					@php debug(get_cart_total_qty_and_amt()[0]->total_qty, false); @endphp
 					<div class="row mt-4">
 						<div class="col-md-6">
 							<div class="form-group d-flex">
@@ -41,7 +42,7 @@
 							<i class="icon-minus"></i>
 							</button>
 							</span>
-							<input type="text" id="quantity" name="quantity" class="form-control input-number" value="1" min="1" max="100">
+							<input type="text" id="quantity" name="quantity" class="form-control input-number" value="@if (@$data['cart_details']->qty > 1) {{ @$data['cart_details']->qty }} @else 1 @endif " min="1" max="100">
 							<span class="input-group-btn ml-2">
 							<button type="button" class="quantity-right-plus btn" data-type="plus" data-field="">
 							<i class="icon-plus"></i>
