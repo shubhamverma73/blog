@@ -5,20 +5,15 @@ namespace App\Http\Model;
 use Illuminate\Database\Eloquent\Model;
 use Eloquent;
 
-class Product extends Eloquent
+class Cart extends Eloquent
 {
-	protected 	$table 		= 'product';
+	protected 	$table 		= 'cart_details';
 	protected 	$primaryKey = 'id';
 	public 		$timestamps = false;
 	const 		CREATED_AT 	= 'timestamp';
 
-	public function category()
+	public function product()
 	{
-		return $this->belongsTo('App\Http\Model\Category', 'cat_id', 'id');
-	}
-
-	public function cart()
-	{
-		return $this->hasMany('App\Http\Model\Cart', 'id', 'cat_id');
+		return $this->belongsTo('App\Http\Model\product', 'product_id', 'id');
 	}
 }
