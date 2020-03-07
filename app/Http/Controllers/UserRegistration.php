@@ -44,8 +44,8 @@ class UserRegistration extends Controller
 									'user_id' 		=> $login->id,
 									'user_name' 	=> $login->name,
 									'email' 		=> $login->email,
-									'total_qty'		=> $cart_details[0]->total_qty,
-									'total_amt'		=> $cart_details[0]->total_amt,
+									'total_qty'		=> @$cart_details[0]->total_qty,
+									'total_amt'		=> @$cart_details[0]->total_amt,
 								);
 
 			Session::put($user_session);
