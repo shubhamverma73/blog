@@ -50,7 +50,7 @@
 						</div>
 						<div class="w-100"></div>
 						<div class="col-md-12">
-							<p style="color: #000;">600 kg available</p>
+							<p style="color: #000;">60 kg available</p>
 						</div>
 					</div>
 					<p>
