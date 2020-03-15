@@ -20,7 +20,6 @@
 					<p class="price"><span>{{ $data['product']->price }}</span></p>
 					<p>{{ $data['product']->description }}
 					</p>
-					@php debug(get_cart_total_qty_and_amt()[0]->total_qty, false); @endphp
 					<div class="row mt-4">
 						<div class="col-md-6">
 							<div class="form-group d-flex">

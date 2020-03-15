@@ -9,6 +9,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Product;
 use App\Http\Model\Category;
+use App\Http\Model\Cart;
 
 class home extends Controller
 {
@@ -68,8 +69,9 @@ class home extends Controller
 		$data['title'] = 'Cart';
 		$data['cart_details'] 	= DB::table('cart_details')->where('user_id', session('user_id'))->where('status', 'Pending')->get();
 
-		$product = Product::with(['category'])->get()->toArray();
-		debug($product);
+		//$product = Product::with(['category'])->get()->toArray();
+		$cart = Cart::with(['product'])->where('status', 'Pending')->where('user_id', session('user_id'))->get()->toArray();
+		//debug($cart, false);
 
 		return view('cart',['data'=>$data]);
 	}
