@@ -71,6 +71,7 @@ class home extends Controller
 
 		//$product = Product::with(['category'])->get()->toArray();
 		$cart = Cart::with(['product'])->where('status', 'Pending')->where('user_id', session('user_id'))->get()->toArray();
+		$data['cart_data'] = $cart;
 		//debug($cart, false);
 
 		return view('cart',['data'=>$data]);
@@ -191,5 +192,47 @@ class home extends Controller
 
 		$data['profile'] = DB::table('registration')->where('id', session('user_id'))->first();
 		return view('profile_details',['data'=>$data]);
+	}
+
+	public function remove_to_cart(Request $request) {
+		if(!empty(session('user_id'))) {
+			$product_id 	= $request->input('cart_id');
+
+			// =============== Delete product from cart ===================
+			$upArray = array(
+				'status' => 'Deleted'
+		    );
+		    $updateOrder = Cart::where('id', $product_id)->update($upArray);
+
+		    // ================= Get Order ID =================
+		    $user_cart_details 	= DB::table('cart')->where('user_id', session('user_id'))->where('status', 'Pending')->first();
+		    $order_id 	= $user_cart_details->order_id;
+
+			$total_qty = DB::table('cart_details')->where('user_id', session('user_id'))->where('status', 'Pending')->get()->sum('qty');
+			$total_amt = DB::table('cart_details')->where('user_id', session('user_id'))->where('status', 'Pending')->get()->sum('amount');
+
+			$data = array(
+							"total_qty"		=> $total_qty,
+							"total_amt"		=> $total_amt,
+							"status"		=> 'Pending'
+						);
+			$update_successfully = DB::table('cart')->where('order_id', $order_id)->update($data);
+
+			if(!empty($update_successfully)) {
+				//User cart session
+				$cart_session = array(
+								'order_id' 		=> $order_id,
+								'total_qty' 	=> $total_qty,
+								'total_amt' 	=> $total_amt
+							);
+				Session::put($cart_session);
+
+				echo 'removeFromCart';
+			} else {
+				echo 'notRemoveFromCart';
+			}
+		} else {
+			echo 'userNotLogin';
+		}
 	}
 }

@@ -43,7 +43,7 @@
 				<div class="col-md-6 col-lg-3 ftco-animate">
 					<div class="product">
 						<a href="{{url('/product-details')}}/{{ $product->id }}" class="img-prod">
-							<img class="img-fluid" src="{{ asset('assets/images/'.$product->image) }}" alt="Colorlib Template">
+							<img class="img-fluid" src="{{ asset('assets/images/'.$product->image) }}" alt="Product Image">
 							<span class="status">30%</span>
 							<div class="overlay"></div>
 						</a>
