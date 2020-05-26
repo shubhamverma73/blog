@@ -39,6 +39,76 @@
 		@yield('content')
 		@include('layout.footer')
 	</div>
+
+	<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/7.14.5/firebase-messaging.js"></script>
+	<script>
+		// Your web app's Firebase configuration
+		var firebaseConfig = {
+			apiKey: "AIzaSyCLFQbE-OvUvsyjZprBqu7K9I8QroA8B80",
+			authDomain: "web-notification-37dfe.firebaseapp.com",
+			databaseURL: "https://web-notification-37dfe.firebaseio.com",
+			projectId: "web-notification-37dfe",
+			storageBucket: "web-notification-37dfe.appspot.com",
+			messagingSenderId: "1033144298619",
+			appId: "1:1033144298619:web:9120de536ae026157a86de",
+			measurementId: "G-RW3E5DC3NY"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+		// Retrieve Firebase Messaging object.
+		const messaging = firebase.messaging();
+		// Add the public key generated from the console here.
+		messaging.usePublicVapidKey("BK33q1P2ujfEISNmRk_knhh-Y-iOiWA0oGpeU0SVvlNGL8iQjhGUKtrXNcuzrx4q0pctfWXI7C9rp6i1UpyJjH8");
+
+		Notification.requestPermission().then((permission) => {
+		  if (permission === 'granted') {
+			console.log('Notification permission granted.');
+			// TODO(developer): Retrieve an Instance ID token for use with FCM.
+			// [START_EXCLUDE]
+			// In many cases once an app has been granted notification permission,
+			// it should update its UI reflecting this.
+			// [END_EXCLUDE]
+		  } else {
+			console.log('Unable to get permission to notify.');
+		  }
+		});
+
+		// Get Instance ID token. Initially this makes a network call, once retrieved
+		// subsequent calls to getToken will return from cache.
+		messaging.getToken().then((currentToken) => {
+		  if (currentToken) {
+			sendTokenToServer(currentToken);
+			updateUIForPushEnabled(currentToken);
+		  } else {
+			// Show permission request.
+			console.log('No Instance ID token available. Request permission to generate one.');
+			// Show permission UI.
+			updateUIForPushPermissionRequired();
+			setTokenSentToServer(false);
+		  }
+		}).catch((err) => {
+		  console.log('An error occurred while retrieving token. ', err);
+		  //showToken('Error retrieving Instance ID token. ', err);
+		  //setTokenSentToServer(false);
+		});
+
+		// Callback fired if Instance ID token is updated.
+		messaging.onTokenRefresh(() => {
+		  messaging.getToken().then((refreshedToken) => {
+			console.log('Token refreshed.');
+			// Indicate that the new Instance ID token has not yet been sent to the
+			// app server.
+			setTokenSentToServer(false);
+			// Send Instance ID token to app server.
+			sendTokenToServer(refreshedToken);
+			// ...
+		  }).catch((err) => {
+			console.log('Unable to retrieve refreshed token ', err);
+			showToken('Unable to retrieve refreshed token ', err);
+		  });
+		});
+	</script>
 </body>
 
 </html>
