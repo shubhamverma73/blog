@@ -45,6 +45,7 @@ Route::get('checkout','home@checkout');
 Route::post('add-to-cart','home@add_to_cart');
 Route::post('my-account', 'home@my_account');
 Route::post('remove-to-cart','home@remove_to_cart');
+Route::get('send-notificaiton','home@send_notificaiton');
 
 Route::get('get-flight-data','FlightController@index');
 Route::get('get-flight-data-specific/{id}','FlightController@specific_record');

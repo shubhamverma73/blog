@@ -235,4 +235,12 @@ class home extends Controller
 			echo 'userNotLogin';
 		}
 	}
+
+	function send_notificaiton() {
+		if(send_web_notification()) {
+			echo 'Success';
+		} else {
+			echo 'Failed';
+		}
+	}
 }

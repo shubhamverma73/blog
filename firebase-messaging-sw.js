@@ -1,5 +1,5 @@
-importScripts("https://www.gstatic.com/firebasejs/3.7.4/firebase-app.js");
-importScripts("https://www.gstatic.com/firebasejs/3.7.4/firebase-messaging.js");
+importScripts("https://www.gstatic.com/firebasejs/7.14.5/firebase-app.js");
+importScripts("https://www.gstatic.com/firebasejs/7.14.5/firebase-messaging.js");
 
 // Your web app's Firebase configuration
 var firebaseConfig = {

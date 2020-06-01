@@ -423,3 +423,38 @@ function safe($data) {
 	$data = $CI->security->xss_clean($data);
 	return $data;
 }
+
+function send_web_notification() {
+	
+	$registrationIds = 'dFFLSWPP2gx74To2U2yQhk:APA91bF3LKM--fkJW41w1Sn0pAEKuJ9W2PmTfkj9qOxbQk4AsChkjNBJctkfdLg5taN8s9aj7FNjqBFyko7VMBbz2MgK-Fd_jphBlotKnwWRRbOVCK4ceo2PQN6kw38yJmVVkJc1g3If';
+	$API_ACCESS_KEY = 'AAAA8Iwy7Hs:APA91bF29MGH1p6yvSWwRZBLC2OZ39H4c4y_DjD-uVOTed_cgXj5yy4RgDyhhBKx1IVoR6At8EwG9bXZGetjgRCR0JTT4R1WgQzWwIeN0OksQ3sy6pkhcagpTXp5JOJsnzICFLmNaPNx';
+
+	$headers = array(
+		'Authorization: key=' . $API_ACCESS_KEY,
+		'Content-Type: application/json'
+	);
+
+	//======================== Web =====================
+	if( count($registrationIds) > 0 ){
+		$fields = array(
+			'registration_ids'  => $registrationIds,
+			'data' => array(
+				'title' => 'Testing Title', 
+				'body' => 'Testing Message',
+				'icon' => 'https://shubhamverma.tech/laravel/images/shopping-cart-icon.png',
+				'click_action' => "laravel"
+			),
+			'priority' => 'high'
+		);
+			
+		$ch = curl_init();
+		curl_setopt( $ch,CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send' );
+		curl_setopt( $ch,CURLOPT_POST, true );
+		curl_setopt( $ch,CURLOPT_HTTPHEADER, $headers );
+		curl_setopt( $ch,CURLOPT_RETURNTRANSFER, true );
+		curl_setopt( $ch,CURLOPT_SSL_VERIFYPEER, false );
+		curl_setopt( $ch,CURLOPT_POSTFIELDS, json_encode( $fields ) );
+		$result = curl_exec($ch);
+		curl_close( $ch );
+	}
+}
