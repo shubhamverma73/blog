@@ -1,0 +1,1 @@
+<h1>Direct load page without controller</h1>

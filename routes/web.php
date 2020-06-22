@@ -11,9 +11,9 @@
 |
 */
 
-/*Route::get('/', function () {
-	return view('welcome');
-});*/
+Route::get('/direct_load', function () {
+	return view('direct_load');
+});
 Route::get('/','home@index');
 
 Route::get('role',[
