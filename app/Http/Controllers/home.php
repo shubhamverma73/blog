@@ -41,7 +41,7 @@ class home extends Controller
 	public function all_products() {
 		$data['title'] = 'Products';
 
-		$data['product'] = DB::table('product')->where('status', 'Active')->get();
+		$data['product'] = DB::table('product')->where('status', '1')->get();
 		return view('all_products',['data'=>$data]);
 	}
 
