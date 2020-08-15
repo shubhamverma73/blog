@@ -7,6 +7,7 @@ use DB;
 use Session;
 use App;
 use PDF;
+use Mail;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Product;
@@ -265,5 +266,20 @@ class home extends Controller
 		return $pdf->download('invoice.pdf');*/
 
 		return PDF::loadView('invoice', $data)->setPaper('a4', 'landscape')->setWarnings(false)->setOptions(['dpi' => 150, 'default_font' => 'serif'])->download('myfile.pdf');		
+	}
+
+	function send_mail() {
+		$to_name = 'shubham';
+		$to_email = 'shubhamkrverma73@gmail.com';
+		$data = array('name' => 'Sonu', 'body' => 'Test Body');
+		$mail = Mail::send('mail_view', $data, function($message) use ($to_name, $to_email) {
+			$message->to($to_email)
+			->subject('Test Subject');
+		});
+		if($mail) {
+			echo 'Mail sent successfully';
+		} else {
+			echo 'Mail not send, try again';
+		}
 	}
 }

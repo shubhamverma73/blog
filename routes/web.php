@@ -60,3 +60,4 @@ Route::get('get-join-data','FlightController@get_join_data');
 Route::get('get-prd','home@test_join');
 Route::view('direct-load-view-file', 'invoice');
 Route::get('pdf-maker', 'home@pdf_maker');
+Route::get('send-mail', 'home@send_mail');
