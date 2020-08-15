@@ -43,7 +43,7 @@ Route::get('product-details/{id}','home@product_details');
 Route::get('cart','home@cart');
 Route::get('checkout','home@checkout');
 Route::post('add-to-cart','home@add_to_cart');
-Route::post('my-account', 'home@my_account');
+Route::get('my-account', 'home@my_account');
 Route::post('remove-to-cart','home@remove_to_cart');
 Route::get('send-notificaiton','home@send_notificaiton');
 
@@ -55,3 +55,8 @@ Route::get('thank-you','FlightController@thank_you');
 Route::get('get-all-category','FlightController@get_all_category');
 Route::get('normal-join','FlightController@normal_join');
 Route::get('get-join-data','FlightController@get_join_data');
+
+
+Route::get('get-prd','home@test_join');
+Route::view('direct-load-view-file', 'invoice');
+Route::get('pdf-maker', 'home@pdf_maker');

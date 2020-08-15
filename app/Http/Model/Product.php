@@ -19,6 +19,6 @@ class Product extends Eloquent
 
 	public function cart()
 	{
-		return $this->hasMany('App\Http\Model\Cart', 'id', 'cat_id');
+		return $this->hasMany('App\Http\Model\Cart', 'cat_id', 'id');
 	}
 }

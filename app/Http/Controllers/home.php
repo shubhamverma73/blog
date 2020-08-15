@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use Session;
+use App;
+use PDF;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Product;
@@ -242,5 +244,26 @@ class home extends Controller
 		} else {
 			echo 'Failed';
 		}
+	}
+
+	function test_join() {
+		//return Category::find(2)->product;	
+		$cat = Category::get()->toArray();
+		debug($cat, false);
+		//$category = Category::with(['product'])->where('id', 1)->get()->toArray(); //Main table will be cat and 2nd is prd
+		$category = Product::with(['category'])->where('id', 4)->get()->toArray(); // Main table will be prd and 2nd is cat
+		debug($category);
+	}
+
+	function pdf_maker() {
+		/*$pdf = App::make('dompdf.wrapper');
+		$pdf->loadHTML('<h1>First pdf in laravel</h1>');
+		return $pdf->stream();*/
+
+		$data['title'] = 'First PDF in Laravel';
+		/*$pdf = PDF::loadView('invoice', $data);
+		return $pdf->download('invoice.pdf');*/
+
+		return PDF::loadView('invoice', $data)->setPaper('a4', 'landscape')->setWarnings(false)->setOptions(['dpi' => 150, 'default_font' => 'serif'])->download('myfile.pdf');		
 	}
 }

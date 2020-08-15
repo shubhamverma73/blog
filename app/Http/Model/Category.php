@@ -12,12 +12,13 @@ class Category extends Eloquent
 
     public function flight()
     {
-        return $this->hasMany('App\Http\Model\Flight', 'id', 'cat_id');
+        return $this->hasMany('App\Http\Model\Flight', 'cat_id', 'id');
     }
 
     public function product()
     {
-        return $this->hasMany('App\Http\Model\Product', 'id', 'cat_id');
+        return $this->hasMany('App\Http\Model\Product', 'cat_id', 'id');
+        //return $this->hasOne('App\Http\Model\Product', 'cat_id', 'id');
     }
 
 }

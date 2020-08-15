@@ -12,10 +12,6 @@ class Flight extends Eloquent
 	public 		$timestamps = false;
 	const 		CREATED_AT 	= 'timestamp';
 
-	public function test(){
-		echo "This is a test function";
-	}
-
     public function category()
     {
         return $this->belongsTo('App\Http\Model\Category', 'cat_id', 'id');
