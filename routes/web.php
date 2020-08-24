@@ -61,3 +61,4 @@ Route::get('get-prd','home@test_join');
 Route::view('direct-load-view-file', 'invoice');
 Route::get('pdf-maker', 'home@pdf_maker');
 Route::get('send-mail', 'home@send_mail');
+Route::get('test-join-three-table', 'home@test_join_three_table');

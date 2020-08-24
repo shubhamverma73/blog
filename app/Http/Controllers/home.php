@@ -282,4 +282,11 @@ class home extends Controller
 			echo 'Mail not send, try again';
 		}
 	}
+
+	function test_join_three_table() {
+		$cat = Cart::get()->toArray();
+		//debug($cat, false);
+		$category = Cart::with(['product'])->with(['category'])->where('id', 2)->get()->toArray(); // Main table will be prd and 2nd is cat
+		debug($category);
+	}
 }

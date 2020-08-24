@@ -16,4 +16,9 @@ class Cart extends Eloquent
 	{
 		return $this->belongsTo('App\Http\Model\product', 'product_id', 'id');
 	}
+
+	public function category()
+	{
+		return $this->belongsTo('App\Http\Model\category', 'cat_id', 'id');
+	}
 }
