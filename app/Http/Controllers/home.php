@@ -89,7 +89,8 @@ class home extends Controller
 	public function add_to_cart(Request $request) {
 		if(!empty(session('user_id'))) {
 			$product_id = $request->input('product_id');
-			$quantity = $request->input('quantity');
+			//$quantity = $request->input('quantity');
+			$quantity = 1;
 
 			$product_details = DB::table('product')->where('id', [$product_id])->first();
 
