@@ -62,3 +62,7 @@ Route::view('direct-load-view-file', 'invoice');
 Route::get('pdf-maker', 'home@pdf_maker');
 Route::get('send-mail', 'home@send_mail');
 Route::get('test-join-three-table', 'home@test_join_three_table');
+Route::view('add-cat', 'add_category');
+Route::post('add-category', 'home@add_category');
+Route::get('edit-cat/{id}', 'home@edit_category');
+Route::post('update-cat', 'home@update_category');

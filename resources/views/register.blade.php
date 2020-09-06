@@ -4,7 +4,8 @@
 			<div class="row block-12">
 				<div class="col-md-12 order-md-last d-flex">
 					<form action="<?php echo url('/user/register') ?>" method="post" class="bg-white p-5 contact-form">
-						<input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>"> 
+						<!-- <input type = "hidden" name = "_token" value = "<?php echo csrf_token() ?>"> --> 
+						@csrf
 						<div class="form-group">
 							<input type="text" name = "name" class="form-control" placeholder="Name">
 						</div>

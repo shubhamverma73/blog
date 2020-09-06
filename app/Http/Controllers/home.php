@@ -290,4 +290,33 @@ class home extends Controller
 		$category = Cart::with(['product'])->with(['category'])->where('id', 2)->get()->toArray(); // Main table will be prd and 2nd is cat
 		debug($category);
 	}
+
+	function add_category(Request $req) {
+		//return $req->name;
+		$cat = new Category;
+		$cat->name = $req->name;
+		$cat->status = 1;
+		$cat->date = date('Y-m-d');
+		$cat->time = date('H:i:s');
+		$cat->created_at = date('Y-m-d H:i:s');
+		$cat->save();
+		Session::flash('success', 'Category added successfully');
+		return redirect('add-cat');
+		//return redirect('add-cat')->with('success', 'Category added successfully');
+	}
+
+	function edit_category($id) {
+		$data = Category::find($id);
+		return view('edit_cat', ['data' => $data]);
+	}
+
+	function update_category(Request $req) {
+		$cat = Category::find($req->id);
+		$cat->name = $req->name;
+		$cat->updated_at = date('Y-m-d H:i:s');
+		$cat->save();
+		Session::flash('success', 'Category updated successfully');
+		return redirect('edit-cat/'.$req->id);
+		//return redirect('add-cat')->with('success', 'Category updated successfully');
+	}
 }
