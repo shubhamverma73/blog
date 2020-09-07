@@ -35,6 +35,7 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            //\App\Http\Middleware\CustomAuth::class, //For apply middleware for whole website meand for all routes
         ],
 
         'api' => [
@@ -63,6 +64,7 @@ class Kernel extends HttpKernel
         'Age' => \App\Http\Middleware\AgeMiddleware::class,
         'Role' => \App\Http\Middleware\RoleMiddleware::class,
         'terminate' => \App\Http\Middleware\TerminateMiddleware::class,
+        'CustomAuth' => \App\Http\Middleware\CustomAuth::class, //For apply middleware for specific routes
     ];
 
     /**

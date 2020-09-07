@@ -8,6 +8,7 @@ use Session;
 use App;
 use PDF;
 use Mail;
+use Crypt;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Http\Model\Product;
@@ -318,5 +319,21 @@ class home extends Controller
 		Session::flash('success', 'Category updated successfully');
 		return redirect('edit-cat/'.$req->id);
 		//return redirect('add-cat')->with('success', 'Category updated successfully');
+	}
+
+	function use_encrypt_for_signup() {
+		$enc_pass = Crypt::encrypt('1234@sonu');
+		$ins_array = ['original_pass' => '1234@sonu', 'encrypted_pass' => $enc_pass, 'created_at' => date('Y-m-d H:i:s')];
+		$encrypt_decrypt_table = DB::table('encrypt_decrypt_table')->insertGetId($ins_array);
+		if($encrypt_decrypt_table) {
+			return 'password encrypted successfully';
+		} return 'password not encrypted, try again.';
+	}
+
+	function use_decrypt_for_login() {
+		$encrypt_decrypt_table = DB::table('encrypt_decrypt_table')->where('original_pass', '1234@sonu')->get();
+		if(!empty($encrypt_decrypt_table[0]->id)) {
+			return Crypt::decrypt($encrypt_decrypt_table[0]->encrypted_pass);
+		} return 'original_pass not fount, try again.';
 	}
 }
