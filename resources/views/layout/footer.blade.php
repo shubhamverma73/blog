@@ -42,6 +42,7 @@
 						</ul>
 						<ul class="list-unstyled">
 							<li><a href="#" class="py-2 d-block">FAQs</a></li>
+							<li><a href="#" class="py-2 d-block">Contact Us</a></li>
 						</ul>
 					</div>
 				</div>
