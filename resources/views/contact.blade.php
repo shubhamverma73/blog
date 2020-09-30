@@ -10,12 +10,12 @@
 				</div>
 				<div class="col-md-3 d-flex">
 					<div class="info bg-white p-4">
-						<p><span>Phone:</span> <a href="tel://1234567920">+ 1235 2355 98</a></p>
+						<p><span>Phone:</span> <a href="tel://1234567920">+ 011-21549785</a></p>
 					</div>
 				</div>
 				<div class="col-md-3 d-flex">
 					<div class="info bg-white p-4">
-						<p><span>Email:</span> <a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
+						<p><span>Email:</span> <a href="mailto:info@yoursite.com">info@test.com</a></p>
 					</div>
 				</div>
 				<div class="col-md-3 d-flex">
