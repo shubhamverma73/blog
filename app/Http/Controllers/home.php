@@ -18,7 +18,7 @@ use App\Http\Model\Cart;
 class home extends Controller
 {
     public function index() {
-		$data['title'] = 'Dashboard | Home';
+		$data['title'] = 'Home';
 
 		return view('home',['data'=>$data]);
 	}
