@@ -30,7 +30,7 @@ class home extends Controller
 	}
 
 	public function contact() {
-		$data['title'] = 'Contact Us';
+		$data['title'] = 'Contact';
 
 		return view('contact',['data'=>$data]);
 	}
