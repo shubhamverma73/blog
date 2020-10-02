@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 class UserRegistration extends Controller
 {
 	public function register() {
-		$data['title'] = 'User Registration';
+		$data['title'] = 'Registration';
 
 		return view('register',['data'=>$data]);
 	}
@@ -28,7 +28,7 @@ class UserRegistration extends Controller
 	}
 
 	public function login() {
-		$data['title'] = 'User Login';
+		$data['title'] = 'Login';
 		
 		return view('login',['data'=>$data]);
 	}
