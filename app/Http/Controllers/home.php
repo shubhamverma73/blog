@@ -18,7 +18,7 @@ use App\Http\Model\Cart;
 class home extends Controller
 {
     public function index() {
-		$data['title'] = 'Dashboard | Home';
+		$data['title'] = 'Home';
 
 		return view('home',['data'=>$data]);
 	}
@@ -30,7 +30,7 @@ class home extends Controller
 	}
 
 	public function contact() {
-		$data['title'] = 'Contact Us';
+		$data['title'] = 'Contact';
 
 		return view('contact',['data'=>$data]);
 	}
