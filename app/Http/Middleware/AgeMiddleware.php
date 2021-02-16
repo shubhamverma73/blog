@@ -15,6 +15,7 @@ class AgeMiddleware
      */
     public function handle($request, Closure $next)
     {
+        echo 'Age';
         return $next($request);
     }
 }

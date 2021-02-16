@@ -34,7 +34,7 @@ Route::get('layout','UserRegistration@layout');
 
 Route::get('home','home@index');
 Route::get('about-us','home@about');
-Route::get('contact-us','home@contact');
+Route::get('contact-us','home@contact')->middleware('ageCheck');
 Route::get('products/{id}','home@products');
 Route::get('all-products','home@all_products');
 Route::get('wishlist','home@wishlist');
