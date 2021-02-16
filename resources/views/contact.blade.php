@@ -20,7 +20,7 @@
 				</div>
 				<div class="col-md-3 d-flex">
 					<div class="info bg-white p-4">
-						<p><span>Website</span> <a href="#">yoursite.com</a></p>
+						<p><span>Website</span> <a href="{{action('home@index')}}">yoursite.com</a></p>
 					</div>
 				</div>
 			</div>
