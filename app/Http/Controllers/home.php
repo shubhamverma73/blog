@@ -63,8 +63,9 @@ class home extends Controller
 
 	public function product_details($id) {
 		$data['title'] = 'Products Details';
-
+		//DB::connection()->enableQueryLog();
 		$data['product'] 		= DB::table('product')->where('id', $id)->first();
+		//dd(DB::getQueryLog());
 		$data['cart_details'] 	= DB::table('cart_details')->where('user_id', session('user_id'))->where('status', 'Pending')->where('product_id', $id)->first();
 		return view('product_details',['data'=>$data]);
 	}
