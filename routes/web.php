@@ -69,3 +69,5 @@ Route::get('edit-cat/{id}', 'home@edit_category');
 Route::post('update-cat', 'home@update_category');
 Route::get('encrypt-code-for-pass', 'home@use_encrypt_for_signup');
 Route::get('decrypt-code-for-pass', 'home@use_decrypt_for_login');
+
+Route::get('mail-send-event', 'SendMail@index'); //This is just like a trigger event and its call Events and Listner

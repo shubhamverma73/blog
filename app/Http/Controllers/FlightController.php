@@ -53,8 +53,8 @@ class FlightController extends Controller
 		Flight::destroy(1, 2, 3); //Multiple records only primary key
 		Flight::where('cat_id', '=', 1)->delete(); //Delete using other column value*/
 
-		$flight = Flight::where('id', 12)->first();
-		$flight->delete(); //Single record
+		$flight = Flight::withTrashed()->find(13);
+		$flight->delete();
 	}
 
 	public function thank_you() {

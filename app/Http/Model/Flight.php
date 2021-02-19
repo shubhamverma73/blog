@@ -14,7 +14,7 @@ class Flight extends Eloquent
 	protected 	$primaryKey = 'id';
 	public 		$timestamps = false;
 	const 		CREATED_AT 	= 'timestamp';
-	protected 	$hidden 	= ["deleted_at"];
+	protected 	$dates 		= ["deleted_at"];
 	protected 	$softDelete = true;
 
     public function category()
