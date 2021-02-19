@@ -14,10 +14,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Model\Product;
 use App\Http\Model\Category;
 use App\Http\Model\Cart;
+use Illuminate\Support\Facades\Schema;
 
 class home extends Controller
 {
     public function index() {
+    	/*if (!Schema::hasTable('carts')) {
+		    echo 'Cart table does not exist';
+		} else {
+			echo 'Cart table exist';
+		}*/
+
 		$data['title'] = 'Home';
 
 		return view('home',['data'=>$data]);
