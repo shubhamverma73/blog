@@ -4,13 +4,18 @@ namespace App\Http\Model;
 
 use Illuminate\Database\Eloquent\Model;
 use Eloquent;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Flight extends Eloquent
 {
+	use SoftDeletes;
+
 	protected 	$table 		= 'product';
 	protected 	$primaryKey = 'id';
 	public 		$timestamps = false;
 	const 		CREATED_AT 	= 'timestamp';
+	protected 	$hidden 	= ["deleted_at"];
+	protected 	$softDelete = true;
 
     public function category()
     {

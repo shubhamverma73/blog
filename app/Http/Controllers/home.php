@@ -14,10 +14,17 @@ use App\Http\Controllers\Controller;
 use App\Http\Model\Product;
 use App\Http\Model\Category;
 use App\Http\Model\Cart;
+use Illuminate\Support\Facades\Schema;
 
 class home extends Controller
 {
     public function index() {
+    	/*if (!Schema::hasTable('carts')) {
+		    echo 'Cart table does not exist';
+		} else {
+			echo 'Cart table exist';
+		}*/
+
 		$data['title'] = 'Home';
 
 		return view('home',['data'=>$data]);
@@ -63,8 +70,9 @@ class home extends Controller
 
 	public function product_details($id) {
 		$data['title'] = 'Products Details';
-
+		//DB::connection()->enableQueryLog();
 		$data['product'] 		= DB::table('product')->where('id', $id)->first();
+		//dd(DB::getQueryLog());
 		$data['cart_details'] 	= DB::table('cart_details')->where('user_id', session('user_id'))->where('status', 'Pending')->where('product_id', $id)->first();
 		return view('product_details',['data'=>$data]);
 	}
@@ -272,16 +280,17 @@ class home extends Controller
 
 	function send_mail() {
 		$to_name = 'shubham';
-		$to_email = 'shubhamkrverma73@gmail.com';
-		$data = array('name' => 'Sonu', 'body' => 'Test Body');
-		$mail = Mail::send('mail_view', $data, function($message) use ($to_name, $to_email) {
+		$to_email = 'shubham.triadweb@gmail.com';
+		$data = array('name' => 'Sonu', 'body' => 'Test Body ...');
+		Mail::send('mail_view', $data, function($message) use ($to_name, $to_email) {
 			$message->to($to_email)
 			->subject('Test Subject');
+			//$message->from('sonu@gmail.com','Sonu');
 		});
-		if($mail) {
-			echo 'Mail sent successfully';
+		if(Mail::failures()) {
+			echo 'Mail not send, try again '. new Error(Mail::failures());
 		} else {
-			echo 'Mail not send, try again';
+			echo 'Mail sent successfully';
 		}
 	}
 

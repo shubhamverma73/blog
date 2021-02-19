@@ -55,6 +55,7 @@ Route::get('thank-you','FlightController@thank_you');
 Route::get('get-all-category','FlightController@get_all_category');
 Route::get('normal-join','FlightController@normal_join');
 Route::get('get-join-data','FlightController@get_join_data');
+Route::get('delete-record-flag/{id}','FlightController@delete_record');
 
 
 Route::get('get-prd','home@test_join');
