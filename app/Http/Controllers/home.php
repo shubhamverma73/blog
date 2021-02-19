@@ -272,16 +272,17 @@ class home extends Controller
 
 	function send_mail() {
 		$to_name = 'shubham';
-		$to_email = 'shubhamkrverma73@gmail.com';
-		$data = array('name' => 'Sonu', 'body' => 'Test Body');
-		$mail = Mail::send('mail_view', $data, function($message) use ($to_name, $to_email) {
+		$to_email = 'shubham.triadweb@gmail.com';
+		$data = array('name' => 'Sonu', 'body' => 'Test Body ...');
+		Mail::send('mail_view', $data, function($message) use ($to_name, $to_email) {
 			$message->to($to_email)
 			->subject('Test Subject');
+			//$message->from('sonu@gmail.com','Sonu');
 		});
-		if($mail) {
-			echo 'Mail sent successfully';
+		if(Mail::failures()) {
+			echo 'Mail not send, try again '. new Error(Mail::failures());
 		} else {
-			echo 'Mail not send, try again';
+			echo 'Mail sent successfully';
 		}
 	}
 
